@@ -9,6 +9,7 @@ Hardware button clicks tracked for posterity.
 # Technologies
  - Particle Photon
  - webhooks
+ - websockets
  - Azure Functions
  - Azure Table Storage
  - node.js
