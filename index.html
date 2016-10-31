@@ -1,5 +1,4 @@
 <HTML>
-
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://use.fontawesome.com/cac5715983.js"></script>
@@ -82,6 +81,7 @@
 		<BR><BR><span id="details">* Since October 31, 2016. Source on <a href="http://www.github.com/hxlnt/cloudclicker" target="new">GitHub</a>.</span></div>
 	</div>
 	<script>
+	var utcoffset = 5;	
         var emailsSentThisMonth = 0;
         var emailsSentToday = 0;
         var emailsTrashedThisMonth = 0;
@@ -95,9 +95,9 @@
             socket.on('sentData', function(emailsSent) {
                 var currentDate = new Date();
                 var dayCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-                dayCutoff = dayCutoff.getTime();
+                dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
                 var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
-                monthCutoff = monthCutoff.getTime();
+                monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
                 emailsSentEver = emailsSent.length;
                 for (var i = 0; i < emailsSentEver; i++) {
                     if (parseInt(emailsSent[i].RowKey._) >= dayCutoff) { emailsSentToday++ }
@@ -112,9 +112,9 @@
         socket.on('trashedData', function(emailsTrashed) {
             var currentDate = new Date();
             var dayCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-            dayCutoff = dayCutoff.getTime();
+            dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
             var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
-            monthCutoff = monthCutoff.getTime();
+            monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
             emailsTrashedEver = emailsTrashed.length;
             for (var i = 0; i < emailsTrashedEver; i++) {
                 if (parseInt(emailsTrashed[i].RowKey._) >= dayCutoff) { emailsTrashedToday++ }
