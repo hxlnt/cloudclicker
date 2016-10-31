@@ -9,15 +9,15 @@ Hardware button clicks tracked for posterity.
 # Technologies
  - Particle Photon
  - webhooks
- - websockets
+ - WebSockets (socket.io)
  - Azure Functions
  - Azure Table Storage
  - node.js
 
 # TODO
-1. Post Azure Function code
-2. Post Photon .ino code
-3. Post wiring diagram
+1. Post Azure Function code.
+2. Post Photon .ino code.
+3. Post wiring diagram.
 4. Add sounds!
 5. Fix probably a bunch of bugs.
 6. Explain this more.
