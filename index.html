@@ -76,8 +76,8 @@
 	<div id="spinner"><i class="fa fa-at fa-spin fa-fw" aria-hidden="true"></i></div>
 	<div id="statcontainer">
 		<span style="font-weight:bold">NO BAD INBOXES. Rae's email tracker.</span>
-		<div class="stats"><span id="sent1"></span> emails sent today. (Compare that to the average <span id="sent2"></span> emails sent per day.*)</div>
-		<div class="stats"><span id="trashed1"></span> emails deleted today. <span id="trashed2"></span> emails deleted this month. <span id="trashed3"></span> emails deleted in total*.
+		<div class="stats"><span id="sent1"></span> emails sent today. (Compare that to her average of <span id="sent2"></span> emails sent per day.*)</div>
+		<div class="stats"><span id="trashed1"></span> emails deleted today. (Compare that to her average of <span id="trashed2"></span> emails deleted per day.*)
 		<BR><BR><span id="details">* Since October 31, 2016. Source on <a href="http://www.github.com/hxlnt/cloudclicker" target="new">GitHub</a>.</span></div>
 	</div>
 	<script>
@@ -100,7 +100,7 @@
                 dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
                 var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
                 monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
-				var daysPassed = Math.ceil((dayCutoff + msPerDay - startDate) / msPerDay);
+				var daysPassed = Math.ceil((dayCutoff - startDate) / msPerDay);
                 emailsSentEver = emailsSent.length;
 				var avgEmailsSent = (Math.round(10 * emailsSent.length / daysPassed)) / 10; 
                 for (var i = 0; i < emailsSentEver; i++) {
@@ -119,6 +119,9 @@
             dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
             var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
             monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
+			var daysPassed = Math.ceil((dayCutoff - startDate) / msPerDay);
+            emailsSentEver = emailsSent.length;
+			var avgEmailsTrashed = (Math.round(10 * emailsTrashed.length / daysPassed)) / 10;
             emailsTrashedEver = emailsTrashed.length;
             for (var i = 0; i < emailsTrashedEver; i++) {
                 if (parseInt(emailsTrashed[i].RowKey._) >= dayCutoff) { emailsTrashedToday++ }
@@ -126,8 +129,8 @@
             }
             console.log(emailsTrashedToday + ' emails deleted today. ' + emailsTrashedThisMonth + ' emails deleted this month. ' + emailsTrashedEver + ' email(s) deleted since October 31, 2016.');
             $( "#trashed1" ).text(emailsTrashedToday);
-            $( "#trashed2" ).text(emailsTrashedThisMonth);
-            $( "#trashed3" ).text(emailsTrashedEver);
+            $( "#trashed2" ).text(avgEmailsTrashed);
+           // $( "#trashed3" ).text(emailsTrashedEver);
             $( ".stats" ).fadeIn(200);        
         });
     
@@ -138,8 +141,7 @@
         emailsSentEver++;
         console.log(emailsSentToday + ', ' + emailsSentThisMonth + ', ' + emailsSentEver);
         $( "#sent1" ).text( emailsSentToday );
-        $( "#sent2" ).text( emailsSentThisMonth );
-        $( "#sent3" ).text( emailsSentEver );
+        //$( "#sent3" ).text( emailsSentEver );
         $( "#livesent" ).delay(3000).slideToggle(800);
         });
 
@@ -150,8 +152,7 @@
         emailsTrashedEver++;
         console.log(emailsTrashedToday + ', ' + emailsTrashedThisMonth + ', ' + emailsTrashedEver);
         $( "#trashed1" ).text(emailsTrashedToday);
-        $( "#trashed2" ).text(emailsTrashedThisMonth);
-        $( "#trashed3" ).text(emailsTrashedEver);
+        $//( "#trashed3" ).text(emailsTrashedEver);
         $( "#livetrashed" ).delay(3000).slideToggle(800);
         });
 
