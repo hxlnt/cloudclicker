@@ -76,7 +76,7 @@
 	<div id="spinner"><i class="fa fa-at fa-spin fa-fw" aria-hidden="true"></i></div>
 	<div id="statcontainer">
 		<span style="font-weight:bold">NO BAD INBOXES. Rae's email tracker.</span>
-		<div class="stats"><span id="sent1"></span> emails sent today. (Compare that to the average <span id="sent2"></span> emails sent this per day.*) Hoo boy!</div>
+		<div class="stats"><span id="sent1"></span> emails sent today. (Compare that to the average <span id="sent2"></span> emails sent per day.*)</div>
 		<div class="stats"><span id="trashed1"></span> emails deleted today. <span id="trashed2"></span> emails deleted this month. <span id="trashed3"></span> emails deleted in total*.
 		<BR><BR><span id="details">* Since October 31, 2016. Source on <a href="http://www.github.com/hxlnt/cloudclicker" target="new">GitHub</a>.</span></div>
 	</div>
@@ -100,7 +100,7 @@
                 dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
                 var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
                 monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
-				var daysPassed = (dayCutoff + msPerDay - startDate) / msPerDay;
+				var daysPassed = Math.ceil((dayCutoff + msPerDay - startDate) / msPerDay);
                 emailsSentEver = emailsSent.length;
 				var avgEmailsSent = (Math.round(10 * emailsSent.length / daysPassed)) / 10; 
                 for (var i = 0; i < emailsSentEver; i++) {
