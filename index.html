@@ -120,7 +120,7 @@
             var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
             monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
 			var daysPassed = Math.ceil((dayCutoff - startDate) / msPerDay);
-            emailsSentEver = emailsSent.length;
+            emailsSentEver = emailsTrashed.length;
 			var avgEmailsTrashed = (Math.round(10 * emailsTrashed.length / daysPassed)) / 10;
             emailsTrashedEver = emailsTrashed.length;
             for (var i = 0; i < emailsTrashedEver; i++) {
