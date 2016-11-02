@@ -76,7 +76,7 @@
 	<div id="spinner"><i class="fa fa-at fa-spin fa-fw" aria-hidden="true"></i></div>
 	<div id="statcontainer">
 		<span style="font-weight:bold">NO BAD INBOXES. Rae's email tracker.</span>
-		<div class="stats"><span id="sent1"></span> emails sent today. <span id="sent2"></span> emails sent this month. <span id="sent3"></span> emails sent in total*.</div>
+		<div class="stats"><span id="sent1"></span> emails sent today. (Compare that to the average <span id="sent2"></span> emails sent this per day.*) Hoo boy!</div>
 		<div class="stats"><span id="trashed1"></span> emails deleted today. <span id="trashed2"></span> emails deleted this month. <span id="trashed3"></span> emails deleted in total*.
 		<BR><BR><span id="details">* Since October 31, 2016. Source on <a href="http://www.github.com/hxlnt/cloudclicker" target="new">GitHub</a>.</span></div>
 	</div>
@@ -87,6 +87,8 @@
         var emailsTrashedThisMonth = 0;
         var emailsTrashedToday = 0;
         var emailsSentEver, emailsTrashedEver;
+		var startDate = 1477890000000;
+		var msPerDay = 86400000;
         $( ".stats" ).hide();
         $( "#livesent" ).hide();
         $( "#livetrashed" ).hide();
@@ -98,15 +100,17 @@
                 dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
                 var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
                 monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
+				var daysPassed = (dayCutoff + msPerDay - startDate) / msPerDay;
                 emailsSentEver = emailsSent.length;
+				var avgEmailsSent = emailsSent.length / daysPassed; 
                 for (var i = 0; i < emailsSentEver; i++) {
                     if (parseInt(emailsSent[i].RowKey._) >= dayCutoff) { emailsSentToday++ }
                     if (parseInt(emailsSent[i].RowKey._) >= monthCutoff) { emailsSentThisMonth++ }
                 }
                 console.log(emailsSentToday + ' emails sent today. ' + emailsSentThisMonth + ' emails sent this month. ' + emailsSentEver + ' email(s) sent since October 31, 2016.');
                 $( "#sent1" ).text( emailsSentToday );
-                $( "#sent2" ).text( emailsSentThisMonth );
-                $( "#sent3" ).text( emailsSentEver );
+                $( "#sent2" ).text( avgEmailsSent );
+                //$( "#sent3" ).text( emailsSentEver );
                 $( ".stats" ).fadeIn(200);
             });
         socket.on('trashedData', function(emailsTrashed) {
