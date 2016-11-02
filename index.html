@@ -102,7 +102,7 @@
                 monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
 				var daysPassed = (dayCutoff + msPerDay - startDate) / msPerDay;
                 emailsSentEver = emailsSent.length;
-				var avgEmailsSent = emailsSent.length / daysPassed; 
+				var avgEmailsSent = (Math.round(10 * emailsSent.length / daysPassed)) / 10; 
                 for (var i = 0; i < emailsSentEver; i++) {
                     if (parseInt(emailsSent[i].RowKey._) >= dayCutoff) { emailsSentToday++ }
                     if (parseInt(emailsSent[i].RowKey._) >= monthCutoff) { emailsSentThisMonth++ }
