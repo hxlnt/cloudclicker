@@ -100,7 +100,7 @@
                 dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
                 var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
                 monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
-				var daysPassed = Math.floor((dayCutoff - startDate) / msPerDay);
+				var daysPassed = Math.ceil((dayCutoff - startDate) / msPerDay);
                 emailsSentEver = emailsSent.length;
 				var avgEmailsSent = (Math.round(10 * emailsSentEver / daysPassed)) / 10; 
                 for (var i = 0; i < emailsSentEver; i++) {
@@ -108,7 +108,7 @@
                     if (parseInt(emailsSent[i].RowKey._) >= monthCutoff) { emailsSentThisMonth++ }
                 }
                 console.log(emailsSentToday + ' emails sent today. ' + emailsSentThisMonth + ' emails sent this month. ' + emailsSentEver + ' email(s) sent since October 31, 2016.');
-				console.log('Days used in avg: ' + daysPassed + '. Day cuttoff: ' + dayCutoff)
+				console.log('Days used in avg: ' + daysPassed + '. Day cuttoff: ' + dayCutoff);
                 $( "#sent1" ).text( emailsSentToday );
                 $( "#sent2" ).text( avgEmailsSent );
                 //$( "#sent3" ).text( emailsSentEver );
