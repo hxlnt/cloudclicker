@@ -102,7 +102,7 @@
                 monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
 				var daysPassed = Math.ceil((dayCutoff - startDate) / msPerDay);
                 emailsSentEver = emailsSent.length;
-				var avgEmailsSent = (Math.round(10 * emailsSentEver / daysPassed)) / 10; 
+				var avgEmailsSent = (Math.round(emailsSentEver / daysPassed)); 
                 for (var i = 0; i < emailsSentEver; i++) {
                     if (parseInt(emailsSent[i].RowKey._) >= dayCutoff) { emailsSentToday++ }
                     if (parseInt(emailsSent[i].RowKey._) >= monthCutoff) { emailsSentThisMonth++ }
@@ -120,9 +120,9 @@
             dayCutoff = dayCutoff.getTime() + (3600000 * utcoffset);
             var monthCutoff = new Date(currentDate.getFullYear(), currentDate.getMonth());
             monthCutoff = monthCutoff.getTime() + (3600000 * utcoffset);
-			var daysPassed = Math.floor((dayCutoff - startDate) / msPerDay);
+			var daysPassed = Math.ceil((dayCutoff - startDate) / msPerDay);
             emailsTrashedEver = emailsTrashed.length;
-			var avgEmailsTrashed = (Math.round(10 * emailsTrashedEver / daysPassed)) / 10;
+			var avgEmailsTrashed = (Math.round(emailsTrashedEver / daysPassed));
             for (var i = 0; i < emailsTrashedEver; i++) {
                 if (parseInt(emailsTrashed[i].RowKey._) >= dayCutoff) { emailsTrashedToday++ }
                 if (parseInt(emailsTrashed[i].RowKey._) >= monthCutoff) { emailsTrashedThisMonth++ }
