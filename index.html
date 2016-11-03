@@ -87,7 +87,7 @@
         var emailsTrashedThisMonth = 0;
         var emailsTrashedToday = 0;
         var emailsSentEver, emailsTrashedEver;
-		var startDate = 1477908000000;
+		var startDate = 1477890000000;
 		var msPerDay = 86400000;
         $( ".stats" ).hide();
         $( "#livesent" ).hide();
@@ -108,7 +108,7 @@
                     if (parseInt(emailsSent[i].RowKey._) >= monthCutoff) { emailsSentThisMonth++ }
                 }
                 console.log(emailsSentToday + ' emails sent today. ' + emailsSentThisMonth + ' emails sent this month. ' + emailsSentEver + ' email(s) sent since October 31, 2016.');
-				console.log('Days used in avg: ' + daysPassed + '. ')
+				console.log('Days used in avg: ' + daysPassed + '. Day cuttoff: ' + dayCutoff)
                 $( "#sent1" ).text( emailsSentToday );
                 $( "#sent2" ).text( avgEmailsSent );
                 //$( "#sent3" ).text( emailsSentEver );
